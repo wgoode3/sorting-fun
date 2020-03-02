@@ -49,16 +49,16 @@
         }
 
         function bubble() {
-            for(let i=0; i<arr.length; i++) {
-                for(let j=0; j<arr.length-1-i; j++) {
+            timedForLoop(0, arr.length, 1, function(i) {
+                timedForLoop(0, arr.length-i-1, 1, function(j) {
                     if(arr[j] > arr[j+1]) {
                         let tmp = arr[j];
                         arr[j] = arr[j+1];
                         arr[j+1] = tmp;
                         drawArray();
                     }
-                }
-            }
+                });
+            });
         }
 
         $("#reverse").click(reverse);
@@ -68,7 +68,7 @@
             setTimeout(function() {
                 if(start < end) {
                     cb(start);
-                    timedForLoop(start+1, end, increment, cb);
+                    timedForLoop(start+increment, end, increment, cb);
                 }
             }, 500);
         }
